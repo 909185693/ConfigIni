@@ -1,0 +1,8 @@
+{
+	"BuildId": "23058290",
+	"Modules": 
+	{
+		"ConfigIni": "UnrealEditor-ConfigIni.dll",
+		"ConfigIniEditor": "UnrealEditor-ConfigIniEditor.dll"
+	}
+}
