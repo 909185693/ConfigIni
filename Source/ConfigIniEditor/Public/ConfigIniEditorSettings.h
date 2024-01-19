@@ -12,7 +12,7 @@ struct FConfigIniSettings
 	GENERATED_USTRUCT_BODY()
 
 	FConfigIniSettings()
-		: Class(nullptr)
+		: ClassPath(TEXT(""))
 		, ContainerName(TEXT("Project"))
 		, CategoryName(TEXT("Game"))
 		, SectionName(TEXT(""))
@@ -21,7 +21,7 @@ struct FConfigIniSettings
 	}
 
     UPROPERTY(EditAnywhere, Category = ConfigIniSection)
-    UClass* Class;
+	FSoftClassPath ClassPath;
 
     UPROPERTY(EditAnywhere, Category = ConfigIniSection)
     FName ContainerName;
@@ -40,7 +40,7 @@ struct FConfigIniSettings
 
 	friend bool operator==(const FConfigIniSettings& A, const FConfigIniSettings& B)
 	{
-		return A.Class == B.Class &&
+		return A.ClassPath == B.ClassPath &&
 			A.ContainerName == B.ContainerName &&
 			A.CategoryName == B.CategoryName &&
 			A.SectionName == B.SectionName;
@@ -49,7 +49,7 @@ struct FConfigIniSettings
 	friend int32 GetTypeHash(const FConfigIniSettings& ConfigIniSettings)
 	{
 		int32 Hash = 0;
-		Hash = HashCombine(Hash, GetTypeHash(ConfigIniSettings.Class));
+		Hash = HashCombine(Hash, GetTypeHash(ConfigIniSettings.ClassPath));
 		Hash = HashCombine(Hash, GetTypeHash(ConfigIniSettings.ContainerName));
 		Hash = HashCombine(Hash, GetTypeHash(ConfigIniSettings.CategoryName));
 		Hash = HashCombine(Hash, GetTypeHash(ConfigIniSettings.SectionName));

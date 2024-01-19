@@ -23,7 +23,7 @@
 		{
 			"Name": "ConfigIniEditor",
 			"Type": "Editor",
-			"LoadingPhase": "Default",
+			"LoadingPhase": "PostEngineInit",
 			"WhitelistPlatforms": [ "Win64", "Mac" ]
 		}
 	]

@@ -1,8 +1,0 @@
-{
-	"BuildId": "17155196",
-	"Modules": 
-	{
-		"ConfigIni": "UE4Editor-ConfigIni.dll",
-		"ConfigIniEditor": "UE4Editor-ConfigIniEditor.dll"
-	}
-}

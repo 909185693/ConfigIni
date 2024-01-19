@@ -77,11 +77,14 @@ void FConfigIniEditorModule::UpdateSettingsSections()
 		{
 			if (!CurrentConfigIniSettings.Contains(ConfigIniSettings))
 			{
-				if (IsValid(ConfigIniSettings.Class) && !ConfigIniSettings.ContainerName.IsNone() && !ConfigIniSettings.CategoryName.IsNone() && !ConfigIniSettings.SectionName.IsNone() && !ConfigIniSettings.DisplayName.IsEmpty())
+				if (UClass* Class = ConfigIniSettings.ClassPath.TryLoadClass<UObject>())
 				{
-					SettingsModule->RegisterSettings(ConfigIniSettings.ContainerName, ConfigIniSettings.CategoryName, ConfigIniSettings.SectionName, ConfigIniSettings.DisplayName, ConfigIniSettings.Description, ConfigIniSettings.Class->GetDefaultObject());
+					if (IsValid(Class) && !ConfigIniSettings.ContainerName.IsNone() && !ConfigIniSettings.CategoryName.IsNone() && !ConfigIniSettings.SectionName.IsNone() && !ConfigIniSettings.DisplayName.IsEmpty())
+					{
+						SettingsModule->RegisterSettings(ConfigIniSettings.ContainerName, ConfigIniSettings.CategoryName, ConfigIniSettings.SectionName, ConfigIniSettings.DisplayName, ConfigIniSettings.Description, Class->GetDefaultObject());
 
-					CurrentConfigIniSettings.Add(ConfigIniSettings);
+						CurrentConfigIniSettings.Add(ConfigIniSettings);
+					}
 				}				
 			}
 		}
